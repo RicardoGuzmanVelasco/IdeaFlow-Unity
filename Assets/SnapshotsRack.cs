@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace DefaultNamespace
         {
             snapshots.Add((DateTime.Now, what));
             
-            TheRack.text = string.Join("\n", snapshots);
+            TheRack.text = string.Join("\n", snapshots.Skip(1));
         }
     }
 }
