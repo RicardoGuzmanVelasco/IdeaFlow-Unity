@@ -23,5 +23,10 @@ namespace DefaultNamespace
             TheTimer.text = TheSnapshots.TimeOf(gameObject.name).ToString(@"hh\:mm\:ss");
             ThePercent.text = $"{TheSnapshots.PercentOf(gameObject.name):P0}";
         }
+
+        public static Color ColorOf(string what)
+            => FindObjectsOfType<SnapshotButton>()
+                .Single(x => x.gameObject.name == what)
+                .GetComponent<Image>().color;
     }
 }
