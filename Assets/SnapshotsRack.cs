@@ -17,7 +17,9 @@ namespace DefaultNamespace
         public void Snapshot(string whatStartsNow)
         {
             snapshots.Stamp(whatStartsNow);
-            TheRack.text = string.Join("\n", snapshots.Select(x => $"{x.when:HH:mm:ss} {x.what}"));
+            TheRack.text = snapshots.Stamps
+                .Select(x => $"{x.when:HH:mm:ss} {x.what}")
+                .Aggregate((x, y) => $"{x}\n{y}");
         }
     }
 }

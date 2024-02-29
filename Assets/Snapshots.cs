@@ -5,25 +5,33 @@ using System.Linq;
 
 namespace DefaultNamespace
 {
-    class Snapshots : IEnumerable<(DateTime when, string what)>
+    class Snapshots
     {
-        readonly List<(DateTime when, string what)> snapshots = new();
+        readonly List<(DateTime when, string what)> stamps = new();
+
+        public IEnumerable<(DateTime when, string what)> Stamps => stamps.Skip(1);
+        public IEnumerable<(TimeSpan howLong, string what)> Durations
+        {
+            get
+            {
+                var all = UpdateToNow();
+                for (var i = 0; i < all.Count - 1; i++)
+                    yield return (all[i + 1].when - all[i].when, all[i].what);
+            }
+        }
+        
         public Snapshots() => Stamp("_begin_");
         
         public void Stamp(string whatStartsNow)
-            => snapshots.Add((DateTime.Now, whatStartsNow));
+            => stamps.Add((DateTime.Now, whatStartsNow));
 
         public double PercentOf(string what)
         {
-            if (!this.Any())
-                return 0;
-            
-            return TimeOf(what).TotalSeconds / TotalTime().TotalSeconds;
-            
-            TimeSpan TotalTime()
-            {
-                return UpdateToNow().Last().when - UpdateToNow().First().when;
-            }
+            return Stamps.Any() ?
+                TimeOf(what).TotalSeconds / TotalTime().TotalSeconds
+                : 0;
+
+            TimeSpan TotalTime() => UpdateToNow().Last().when - UpdateToNow().First().when;
         }
 
         public TimeSpan TimeOf(string what)
@@ -42,11 +50,8 @@ namespace DefaultNamespace
 
             return time;
         }
-
+        
         List<(DateTime when, string what)> UpdateToNow()
-            => this.Append((DateTime.Now, "_end_")).ToList();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        public IEnumerator<(DateTime when, string what)> GetEnumerator() => snapshots.Skip(1).GetEnumerator();
+            => Stamps.Append((DateTime.Now, "_end_")).ToList();
     }
 }
