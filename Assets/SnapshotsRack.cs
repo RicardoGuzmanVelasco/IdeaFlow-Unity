@@ -35,14 +35,17 @@ namespace DefaultNamespace
             
             var time = TimeOf(what);
             var totalTime = snapshots[^1].when - snapshots[0].when;
-            return (time.TotalSeconds / totalTime.TotalSeconds);
+            return -time.TotalSeconds / totalTime.TotalSeconds;
         }
 
         public void Snapshot(string what)
         {
             snapshots.Add((DateTime.Now, what));
             
-            TheRack.text = string.Join("\n", snapshots.Skip(1));
+            TheRack.text = string.Join("\n",
+                snapshots
+                    .Skip(1)
+                    .Select(s => $"{s.when:HH:mm:ss} {s.what}"));
         }
     }
 }

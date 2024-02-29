@@ -7,6 +7,8 @@ namespace DefaultNamespace
 {
     public class SnapshotButton : MonoBehaviour
     {
+        bool running;
+        
         Button TheButton => GetComponent<Button>();
         TMP_Text ThePercent => GetComponentsInChildren<TMP_Text>().Single(x => x.name == "Percent");
         TMP_Text TheTimer => GetComponentsInChildren<TMP_Text>().Single(x => x.name == "Timer");
@@ -24,14 +26,23 @@ namespace DefaultNamespace
             });
         }
 
+        void Play() => running = true;
         void Stop()
+        {
+            running = false;
+            Refresh();
+        }
+
+        void Refresh()
         {
             TheTimer.text = TheSnapshots.TimeOf(gameObject.name).ToString(@"hh\:mm\:ss");
             ThePercent.text = $"{TheSnapshots.PercentOf(gameObject.name):P}";
         }
-        
-        void Play()
+
+        void Update()
         {
+            if(running)
+                Refresh();
         }
     }
 }

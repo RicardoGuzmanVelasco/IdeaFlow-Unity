@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_fontSizeMin: 0
   m_fontSizeMax: 28
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2979,7 +2979,7 @@ GameObject:
   - component: {fileID: 1666142043}
   - component: {fileID: 1666142042}
   m_Layer: 5
-  m_Name: Troubleshooting
+  m_Name: Troubleshoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
