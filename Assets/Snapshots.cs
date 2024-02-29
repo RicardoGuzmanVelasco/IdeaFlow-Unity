@@ -26,13 +26,12 @@ namespace DefaultNamespace
             => stamps.Add((DateTime.Now, whatStartsNow));
 
         public double PercentOf(string what)
-        {
-            return Stamps.Any() ?
+            => Stamps.Any() ?
                 TimeOf(what).TotalSeconds / TotalTime().TotalSeconds
                 : 0;
+        
+        public TimeSpan TotalTime() => UpdateToNow().Last().when - UpdateToNow().First().when;
 
-            TimeSpan TotalTime() => UpdateToNow().Last().when - UpdateToNow().First().when;
-        }
 
         public TimeSpan TimeOf(string what)
         {
