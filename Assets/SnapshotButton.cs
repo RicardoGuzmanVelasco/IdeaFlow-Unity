@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ namespace DefaultNamespace
 
         public static Color ColorOf(string what)
             => FindObjectsOfType<SnapshotButton>()
-                .Single(x => x.gameObject.name == what)
-                .GetComponent<Image>().color;
+                .SingleOrDefault(x => x.gameObject.name == what)
+                ?.GetComponent<Image>().color ?? Color.clear;
     }
 }

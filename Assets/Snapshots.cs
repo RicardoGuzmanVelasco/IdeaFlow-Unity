@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Assertions;
+using static System.Linq.Enumerable;
 
 namespace DefaultNamespace
 {
@@ -32,7 +34,6 @@ namespace DefaultNamespace
         
         public TimeSpan TotalTime() => UpdateToNow().Last().when - UpdateToNow().First().when;
 
-
         public TimeSpan TimeOf(string what)
         {
             List<(DateTime when, string what)> all = UpdateToNow();
@@ -48,6 +49,21 @@ namespace DefaultNamespace
             }
 
             return time;
+        }
+        
+        public IEnumerable<string> SplitIn(int howMany)
+        {
+            if(!Stamps.Any())
+                return Repeat("_end_", howMany);
+            var splits = Durations
+                .Select(x => (percent: x.howLong / TotalTime(), x.what))
+                .Select(x => (times: x.percent * howMany, x.what))
+                .SelectMany(x => Repeat(x.what, (int)x.times));
+
+            var result = splits.Concat(Repeat("_end_", howMany - splits.Count()));
+
+            Assert.AreEqual(howMany, result.Count());
+            return result;
         }
         
         List<(DateTime when, string what)> UpdateToNow()

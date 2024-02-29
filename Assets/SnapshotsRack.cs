@@ -17,6 +17,7 @@ namespace DefaultNamespace
         public double PercentOf(string what) => snapshots.PercentOf(what);
         public IEnumerable<(TimeSpan howLong, string what)> Durations => snapshots.Durations;
         public TimeSpan TotalTime() => snapshots.TotalTime();
+        public IEnumerable<string> SplitIn(int howMany) => snapshots.SplitIn(howMany);
 
         public void Snapshot(string whatStartsNow)
         {

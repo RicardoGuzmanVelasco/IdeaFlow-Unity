@@ -1,36 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
     public class GraphAxis : MonoBehaviour
     {
-        Transform Template => transform.GetChild(0);
+        readonly IList<Image> imageChildren = new List<Image>();
+        
+        void Awake()
+        {
+            for(var i = 0; i < transform.childCount; i++)
+                imageChildren.Add(transform.GetChild(i).GetComponent<Image>());
+        }
+
         void Update()
         {
-            Clean();
+            var splits = FindAnyObjectByType<SnapshotsRack>()
+                .SplitIn(howMany: transform.childCount)
+                .Select(SnapshotButton.ColorOf)
+                .ToList();
             
-            var durations = FindObjectOfType<SnapshotsRack>().Durations;
-            foreach (var (howLong, what) in durations)
-            {
-                var percent = Percent(howLong.TotalSeconds);
-                var color = SnapshotButton.ColorOf(what);
-                DrawBar(percent, color);
-            }
-        }
-
-        void Clean()
-        {
-            foreach(Transform child in transform)
-                if (child != Template)
-                    Destroy(child.gameObject);
-        }
-
-        void DrawBar(double percent, Color color)
-        {
+            Assert.AreEqual(splits.Count, imageChildren.Count);
             
+            imageChildren.Zip(splits, (image, color) => (image, color))
+                .ToList()
+                .ForEach(x => x.image.color = x.color);
         }
-
-        double Percent(double duration) => duration / FindObjectOfType<SnapshotsRack>().TotalTime().TotalSeconds;
     }
 }
