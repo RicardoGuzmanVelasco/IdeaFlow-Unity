@@ -10,3 +10,57 @@ B.idea/.idea.IdeaFlow-Unity.dir/.idea/sonarlint/issuestore/index.pb,7\c\7ceccac
 p.idea/.idea.IdeaFlow-Unity.dir/.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,9\c\9c8614bb1358695573bc8e57cce5ce3469b66f61
 |
 L.idea/.idea.IdeaFlow-Unity.dir/.idea/sonarlint/securityhotspotstore/index.pb,1\d\1d1347bb54fbaaa9a6272a0932931b79b793c028
+B
+Assets/Scenes.meta,8\a\8a209c573807b9ac41c7571598168c03509e41a9
+T
+$Assets/Scenes/SampleScene.unity.meta,7\b\7b7c8bb35c948c7cf766ae5419e5f88dc81a00d2
+P
+ ProjectSettings/XRSettings.asset,4\e\4ef2c5807e0fbe8c7022a4365f2190feaf751dc5
+O
+Assets/Scenes/SampleScene.unity,9\7\97a35fd8c69df15f6184f122d30cef70fc0abe05
+K
+Packages/packages-lock.json,e\e\ee5c02414182ac2ee9793586b738cae04287b8bf
+F
+Packages/manifest.json,c\c\cc2c44fef6067b608c229f816ad03fa26e70a2f4
+R
+"ProjectSettings/AudioManager.asset,0\6\0601addf5cdd80193670b5dd3ae0e9fae88bae62
+P
+ ProjectSettings/VFXManager.asset,1\2\12b95f7502e5928a81c05f6e51a72ac9f53d8087
+W
+'ProjectSettings/Physics2DSettings.asset,e\d\ed18f20dbc51e47c3057c29420904eeadf3949ae
+\
+,ProjectSettings/VersionControlSettings.asset,e\1\e1070488b2ff70f83c1e9d4377803fb3958c62c1
+R
+"ProjectSettings/ProjectVersion.txt,b\0\b0589bd2976ea622442f59ada87a8d9f9e407a9e
+Y
+)ProjectSettings/EditorBuildSettings.asset,f\9\f968d6b48da1ab8199dcd0d76fda71b42abb7187
+V
+&ProjectSettings/GraphicsSettings.asset,2\3\23e22e130dd7f3cb222b563b163ebf01366e4b42
+R
+"ProjectSettings/NavMeshAreas.asset,e\1\e1e73dbaf0c5aeb2708d980653afae43680f5a2f
+Q
+!ProjectSettings/TimeManager.asset,1\1\11afb3ab0860f968baf7e3d2e8a0a0f860005d59
+T
+$ProjectSettings/EditorSettings.asset,d\1\d10385c8ac750452c4a2896f8e5d43ba1e36462c
+Y
+)ProjectSettings/ClusterInputManager.asset,8\a\8a03c7dfff4f30cb6b2bfb7fa1b9cabec5508a1d
+P
+ ProjectSettings/TagManager.asset,b\b\bb5c31022a6bdb0c8de055d7b2657e774af959a3
+\
+,ProjectSettings/PackageManagerSettings.asset,d\9\d99f9d0a5fdbfb6c159aac394d97e39e4bdf2aa5
+T
+$ProjectSettings/NetworkManager.asset,a\8\a8c03583080ed45bc7b59fd95c851862d9d0a517
+R
+"ProjectSettings/InputManager.asset,8\d\8d38d3000afc420506d2e162fc6dcb3452cca146
+Z
+*ProjectSettings/UnityConnectSettings.asset,4\a\4a13ee6fa0a1bf00099ffe8b7a9e074411e3b558
+T
+$ProjectSettings/MemorySettings.asset,6\c\6c526d5a1428597058bf632f533b70cce45671c2
+U
+%ProjectSettings/ProjectSettings.asset,f\2\f2ed32d7c38fb54ca0f77eb9645108b362199c9d
+U
+%ProjectSettings/QualitySettings.asset,c\2\c2ee178d13c12c9d073a339b85cfb315a281b83d
+S
+#ProjectSettings/PresetManager.asset,6\7\6750642f9da3ba501fc9cb2175648f2b7ed81c19
+U
+%ProjectSettings/DynamicsManager.asset,e\c\ecb1fd5389ae31334a81374ac3168fb4c180143d
