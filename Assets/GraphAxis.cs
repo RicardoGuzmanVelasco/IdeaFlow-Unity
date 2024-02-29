@@ -5,10 +5,10 @@ namespace DefaultNamespace
 {
     public class GraphAxis : MonoBehaviour
     {
+        Transform Template => transform.GetChild(0);
         void Update()
         {
-            foreach(Transform child in transform)
-                Destroy(child.gameObject);
+            Clean();
             
             var durations = FindObjectOfType<SnapshotsRack>().Durations;
             foreach (var (howLong, what) in durations)
@@ -19,12 +19,16 @@ namespace DefaultNamespace
             }
         }
 
+        void Clean()
+        {
+            foreach(Transform child in transform)
+                if (child != Template)
+                    Destroy(child.gameObject);
+        }
+
         void DrawBar(double percent, Color color)
         {
-            var bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            bar.transform.localScale = new Vector3(0.1f, (float)percent, 0.1f);
-            bar.transform.position = new Vector3((float)percent, 0, 0);
-            bar.GetComponent<Renderer>().material.color = color;
+            
         }
 
         double Percent(double duration) => duration / FindObjectOfType<SnapshotsRack>().TotalTime().TotalSeconds;
