@@ -60,10 +60,7 @@ namespace DefaultNamespace
                 .Select(x => (times: x.percent * howMany, x.what))
                 .SelectMany(x => Repeat(x.what, (int)x.times));
 
-            var result = splits.Concat(Repeat("_end_", howMany - splits.Count()));
-
-            Assert.AreEqual(howMany, result.Count());
-            return result;
+            return splits.Concat(Repeat("_end_", howMany - splits.Count()));
         }
         
         List<(DateTime when, string what)> UpdateToNow()

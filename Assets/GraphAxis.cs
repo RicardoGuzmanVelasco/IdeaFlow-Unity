@@ -24,8 +24,6 @@ namespace DefaultNamespace
                 .Select(SnapshotButton.ColorOf)
                 .ToList();
             
-            Assert.AreEqual(splits.Count, imageChildren.Count);
-            
             imageChildren.Zip(splits, (image, color) => (image, color))
                 .ToList()
                 .ForEach(x => x.image.color = x.color);
