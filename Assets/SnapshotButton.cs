@@ -25,7 +25,7 @@ namespace DefaultNamespace
             ThePercent.text = $"{TheSnapshots.PercentOf(gameObject.name):P0}";
         }
 
-        public static Color ColorOf(string what)
+        public static Color TheColor(string what)
             => FindObjectsOfType<SnapshotButton>()
                 .SingleOrDefault(x => x.gameObject.name == what)
                 ?.GetComponent<Image>().color ?? Color.clear;

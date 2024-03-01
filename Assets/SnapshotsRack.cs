@@ -35,7 +35,7 @@ namespace DefaultNamespace
 
         static string ColorizeStamp(int number, DateTime when, string what)
         {
-            var color = SnapshotButton.ColorOf(what);
+            var color = SnapshotButton.TheColor(what);
             return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{number}. {when:HH:mm:ss} {what} </color>";
         }
     }
