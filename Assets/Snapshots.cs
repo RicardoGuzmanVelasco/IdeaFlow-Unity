@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using static System.Linq.Enumerable;
 
 namespace DefaultNamespace
 {
     class Snapshots
     {
-        readonly List<(DateTime when, string what)> stamps = new();
+        [JsonIgnore] readonly List<(DateTime when, string what)> stamps = new();
 
-        public IEnumerable<(DateTime when, string what)> Stamps => stamps.Skip(1);
-        public IEnumerable<(TimeSpan howLong, string what)> Durations
+        [JsonIgnore] IEnumerable<(DateTime, string)> UpToNow => stamps.Append((DateTime.Now, "_end_"));
+        [JsonIgnore] public IEnumerable<(DateTime when, string what)> Stamps => stamps.Skip(1);
+        [JsonProperty] public IEnumerable<(TimeSpan howLong, string what)> Durations
         {
             get
             {
-                var all = UpdateToNow();
+                var all = NowButTrunkingBegin();
                 for (var i = 0; i < all.Count - 1; i++)
                     yield return (all[i + 1].when - all[i].when, all[i].what);
             }
@@ -30,11 +32,11 @@ namespace DefaultNamespace
                 TimeOf(what).TotalSeconds / TotalTime().TotalSeconds
                 : 0;
         
-        public TimeSpan TotalTime() => UpdateToNow().Last().when - UpdateToNow().First().when;
+        public TimeSpan TotalTime() => NowButTrunkingBegin().Last().when - NowButTrunkingBegin().First().when;
 
         public TimeSpan TimeOf(string what)
         {
-            List<(DateTime when, string what)> all = UpdateToNow();
+            List<(DateTime when, string what)> all = NowButTrunkingBegin();
 
             var time = TimeSpan.Zero;
             for(var i = 0; i < all.Count - 1; i++)
@@ -61,7 +63,7 @@ namespace DefaultNamespace
             return splits.Concat(Repeat("_end_", howMany - splits.Count()));
         }
         
-        List<(DateTime when, string what)> UpdateToNow()
-            => Stamps.Append((DateTime.Now, "_end_")).ToList();
+        List<(DateTime when, string what)> NowButTrunkingBegin()
+            => UpToNow.Skip(1).ToList();
     }
 }

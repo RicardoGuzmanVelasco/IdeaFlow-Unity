@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 
@@ -17,11 +18,7 @@ namespace DefaultNamespace
         public double PercentOf(string what) => snapshots.PercentOf(what);
         public IEnumerable<string> SplitIn(int howMany) => snapshots.SplitIn(howMany);
 
-        public string Serialize()
-        {
-            throw new NotImplementedException();
-            //return JsonConvert.SerializeObject(snapshots);
-        }
+        public string Serialize() => JsonConvert.SerializeObject(snapshots);
 
         public void Snapshot(string whatStartsNow)
         {
