@@ -17,6 +17,12 @@ namespace DefaultNamespace
         public double PercentOf(string what) => snapshots.PercentOf(what);
         public IEnumerable<string> SplitIn(int howMany) => snapshots.SplitIn(howMany);
 
+        public string Serialize()
+        {
+            throw new NotImplementedException();
+            //return JsonConvert.SerializeObject(snapshots);
+        }
+
         public void Snapshot(string whatStartsNow)
         {
             snapshots.Stamp(whatStartsNow);
