@@ -55,12 +55,14 @@ namespace DefaultNamespace
         {
             if(!Stamps.Any())
                 return Repeat("_end_", howMany);
+            
+            
             var splits = Durations
                 .Select(x => (percent: x.howLong / TotalTime(), x.what))
                 .Select(x => (times: x.percent * howMany, x.what))
                 .SelectMany(x => Repeat(x.what, (int)x.times));
 
-            return splits.Concat(Repeat("_end_", howMany - splits.Count()));
+            return splits.Concat(Repeat(splits.Last(), howMany - splits.Count()));
         }
         
         List<(DateTime when, string what)> NowButTrunkingBegin()
