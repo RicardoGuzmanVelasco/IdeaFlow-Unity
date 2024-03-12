@@ -18,6 +18,11 @@ namespace DefaultNamespace
         public double PercentOf(string what) => snapshots.PercentOf(what);
         public IEnumerable<string> SplitIn(int howMany) => snapshots.SplitIn(howMany);
 
+        public TimeSpan TimeSinceLastSnapshot()
+            => snapshots.Stamps.Any()
+                ? DateTime.Now - snapshots.Stamps.Last().when
+                : TimeSpan.FromSeconds(Time.timeSinceLevelLoad); 
+
         public string Serialize() => JsonConvert.SerializeObject(snapshots);
 
         public void Snapshot(string whatStartsNow)

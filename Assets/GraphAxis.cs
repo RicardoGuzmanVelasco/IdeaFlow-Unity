@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static DefaultNamespace.SnapshotButton;
 
@@ -21,12 +19,17 @@ namespace DefaultNamespace
 
         void Update()
         {
-            if(Time.time % RefreshRateInSeconds() < 0.1f)
+            if(Time.time % RefreshRateInSeconds(TimeSinceLast()) < 0.1f)
                 RefreshBars();
         }
 
-        public double RefreshRateInSeconds()
-            => Time.realtimeSinceStartup switch
+        static double TimeSinceLast()
+            => FindAnyObjectByType<SnapshotsRack>()
+                .TimeSinceLastSnapshot()
+                .TotalSeconds;
+
+        static double RefreshRateInSeconds(double sinceTime)
+            => sinceTime switch
             {
                 < 60f => .25f,
                 < 60f * 5 => 1f,
