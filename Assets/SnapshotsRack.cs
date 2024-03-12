@@ -21,7 +21,12 @@ namespace DefaultNamespace
         public TimeSpan TimeSinceLastSnapshot()
             => snapshots.Stamps.Any()
                 ? DateTime.Now - snapshots.Stamps.Last().when
-                : TimeSpan.FromSeconds(Time.timeSinceLevelLoad); 
+                : TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
+        
+        public TimeSpan TimeSinceFirstSnapshot()
+            => snapshots.Stamps.Any()
+                ? DateTime.Now - snapshots.Stamps.First().when
+                : TimeSpan.Zero;
 
         public string Serialize() => JsonConvert.SerializeObject(snapshots);
 
