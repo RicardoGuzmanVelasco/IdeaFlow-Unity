@@ -28,7 +28,17 @@ namespace DefaultNamespace
         public Snapshots() => Stamp("_begin_");
         
         public void Stamp(string whatStartsNow)
-            => stamps.Add((DateTime.Now, whatStartsNow));
+        {
+            if(IsTheSameThanIsActive(whatStartsNow))
+                return;
+            stamps.Add((DateTime.Now, whatStartsNow));
+            
+            bool IsTheSameThanIsActive(string whatStartsNow)
+                => whatStartsNow != "_begin_" &&
+                   Durations.Any() &&
+                   Durations.Last().what == whatStartsNow;
+        }
+
 
         public double PercentOf(string what)
             => Stamps.Any() ?
