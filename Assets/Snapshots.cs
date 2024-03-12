@@ -9,6 +9,7 @@ namespace DefaultNamespace
     class Snapshots
     {
         [JsonIgnore] readonly List<(DateTime when, string what)> stamps = new();
+        [field: JsonProperty] public int Wtf { get; private set; }
 
         [JsonIgnore] IEnumerable<(DateTime, string)> UpToNow => stamps.Append((DateTime.Now, "_end_"));
         [JsonIgnore] public IEnumerable<(DateTime when, string what)> Stamps => stamps.Skip(1);
@@ -21,6 +22,8 @@ namespace DefaultNamespace
                     yield return (all[i + 1].when - all[i].when, all[i].what);
             }
         }
+
+        public void Dafuck() => Wtf++;
         
         public Snapshots() => Stamp("_begin_");
         

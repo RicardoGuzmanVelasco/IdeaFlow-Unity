@@ -18,6 +18,9 @@ namespace DefaultNamespace
         public double PercentOf(string what) => snapshots.PercentOf(what);
         public IEnumerable<string> SplitIn(int howMany) => snapshots.SplitIn(howMany);
 
+        public void Dafuck() => snapshots.Dafuck();
+        public int Dafucks => snapshots.Wtf;
+
         public TimeSpan TimeSinceLastSnapshot()
             => snapshots.Stamps.Any()
                 ? DateTime.Now - snapshots.Stamps.Last().when
