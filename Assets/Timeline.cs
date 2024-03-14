@@ -7,7 +7,7 @@ using static DefaultNamespace.SnapshotButton;
 
 namespace DefaultNamespace
 {
-    public class GraphAxis : MonoBehaviour
+    public class Timeline : MonoBehaviour
     {
         readonly IList<Image> imageChildren = new List<Image>();
         
