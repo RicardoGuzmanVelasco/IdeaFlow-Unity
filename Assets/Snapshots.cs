@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using UnityEngine;
 using static System.Linq.Enumerable;
 
 namespace DefaultNamespace
@@ -78,9 +79,10 @@ namespace DefaultNamespace
             var splits = Durations
                 .Select(x => (percent: x.howLong / TotalTime(), x.what))
                 .Select(x => (times: x.percent * howMany, x.what))
-                .SelectMany(x => Repeat(x.what, (int)x.times));
+                .SelectMany(x => Repeat(x.what, Mathf.RoundToInt((float)x.times)))
+                .ToList();
 
-            return splits.Concat(Repeat(splits.Last(), howMany - splits.Count()));
+            return splits.Concat(Repeat(splits.Last(), howMany - splits.Count));
         }
         
         List<(DateTime when, string what)> NowButTrunkingBegin()
