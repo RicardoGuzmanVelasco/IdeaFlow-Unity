@@ -82,7 +82,10 @@ namespace DefaultNamespace
                 .SelectMany(x => Repeat(x.what, Mathf.RoundToInt((float)x.times)))
                 .ToList();
 
-            return splits.Concat(Repeat(splits.Last(), howMany - splits.Count));
+            var tailLength = howMany - splits.Count;
+            return tailLength < 1
+                ? splits
+                : splits.Concat(Repeat(Durations.Last().what, tailLength));
         }
         
         List<(DateTime when, string what)> NowButTrunkingBegin()
