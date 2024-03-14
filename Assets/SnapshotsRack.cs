@@ -31,12 +31,23 @@ namespace DefaultNamespace
                 ? DateTime.Now - snapshots.Stamps.First().when
                 : TimeSpan.Zero;
 
+        public void RemoveLast()
+        {
+            snapshots.RemoveLast();
+            RefreshText();
+        }
+
         public string Serialize() => JsonConvert.SerializeObject(snapshots);
 
         public void Snapshot(string whatStartsNow)
         {
             snapshots.Stamp(whatStartsNow);
 
+            RefreshText();
+        }
+
+        void RefreshText()
+        {
             var built = new StringBuilder();
             for(var i = 0; i < snapshots.Stamps.ToList().Count; i++)
                 built.AppendLine(NumberedStamp(i));

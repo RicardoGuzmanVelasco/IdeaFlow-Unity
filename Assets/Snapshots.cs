@@ -39,6 +39,11 @@ namespace DefaultNamespace
                    Durations.Last().what == whatStartsNow;
         }
 
+        public void RemoveLast()
+        {
+            if (stamps.Count > 1)
+                stamps.Remove(stamps.Last());
+        }
 
         public double PercentOf(string what)
             => Stamps.Any() ?
